@@ -1,11 +1,13 @@
 from django.contrib import admin
-from .models import Product
+from .models import Item
 
 
-class ProductAdmin(admin.ModelAdmin):
-    pass
+class ItemAdmin(admin.ModelAdmin):
+    list_display = ('name', 'price')
+    search_fields = ('name',)
+    list_filter = ('name',)
 
 
-admin.site.register(Product, ProductAdmin)
+admin.site.register(Item, ItemAdmin)
 
 

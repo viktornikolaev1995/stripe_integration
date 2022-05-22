@@ -1,10 +1,14 @@
 from django.urls import path
-
-from product.views import ProductLandingPageView, CreateCheckoutSessionView, SuccessView, CancelView
+from .views import (
+    ItemLandingPageView,
+    RetrieveCheckoutSessionView,
+    SuccessView,
+    CancelView
+)
 
 urlpatterns = [
     path('cancel/', CancelView.as_view(), name='cancel'),
     path('success/', SuccessView.as_view(), name='success'),
-    path('', ProductLandingPageView.as_view(), name='landing-page'),
-    path('create-checkout-session/<pk>/', CreateCheckoutSessionView.as_view(), name='create-checkout-session')
+    path('item/<int:pk>/', ItemLandingPageView.as_view(), name='item'),
+    path('buy/<int:pk>/', RetrieveCheckoutSessionView.as_view(), name='buy')
 ]
