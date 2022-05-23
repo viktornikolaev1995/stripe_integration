@@ -9,13 +9,13 @@ ENV PYTHONUNBUFFERED 1
 RUN apt-get update \
     && apt-get install netcat -y
 RUN apt-get upgrade -y && apt-get install postgresql gcc python3-dev musl-dev -y
+COPY ./pyproject.toml .
 RUN pip install --upgrade pip
 RUN pip install poetry
 RUN poetry config virtualenvs.create false
 RUN poetry install --no-dev
 
 COPY ./entrypoint.sh .
-
 COPY . .
 
 ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
